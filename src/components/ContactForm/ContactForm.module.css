@@ -1,0 +1,38 @@
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 250px;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.input {
+  padding: 0 5px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid grey;
+}
+
+.btn {
+  margin-top: 15px;
+  height: 30px;
+  border: 1px solid #213547;
+  border-radius: 8px;
+  background-color: transparent;
+  /* background-color: rgb(197, 193, 193); */
+}
+
+.margin {
+  margin-top: 10px;
+}
+
+.error {
+  margin-left: 25px;
+  font-size: 0.75em;
+  color: orangered;
+}

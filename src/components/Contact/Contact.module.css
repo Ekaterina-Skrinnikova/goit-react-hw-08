@@ -1,0 +1,17 @@
+.container {
+  margin: 10px auto 10px auto;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 240px;
+  border-radius: 6px;
+  border: 1px solid #213547;
+}
+
+.btn {
+  height: 30px;
+  border: 1px solid #213547;
+  border-radius: 8px;
+  background-color: transparent;
+}
