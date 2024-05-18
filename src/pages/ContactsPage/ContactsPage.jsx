@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LineWave } from "react-loader-spinner";
 import { fetchContacts } from "../../redux/contacts/operations";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -18,12 +19,27 @@ export default function ContactsPage() {
   return (
     <div className={css.container}>
       <div>
-        <PageTitle>Your contacts</PageTitle>
+        <PageTitle>Add contact</PageTitle>
         <ContactForm />
       </div>
       <div className={css.searchbox}>
         <SearchBox />
-        {isLoading && <p>Loading in progress...</p>}
+        {isLoading && (
+          <LineWave
+            visible={true}
+            height="100"
+            width="100"
+            color="#4fa94d"
+            ariaLabel="line-wave-loading"
+            wrapperStyle={{}}
+            wrapperClass={css.location}
+            firstLineColor=""
+            middleLineColor=""
+            lastLineColor=""
+          />
+        )}
+
+        <PageTitle>List contacts</PageTitle>
         <ContactList />
       </div>
     </div>

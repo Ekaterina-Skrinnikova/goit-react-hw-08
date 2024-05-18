@@ -1,13 +1,22 @@
 import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import { toast } from "react-hot-toast";
 import css from "../RegistrationForm/RegistrationForm.module.css";
 
 export default function RagistrationForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(register(values));
+    dispatch(register(values))
+      .unwrap()
+      .then(() => {
+        toast.success("Welcome to app Contacts!!!");
+      })
+      .catch((error) => {
+        console.log("🚀 ~ handleSubmit ~ error:", error);
+        toast.error("Unfortunately an error occurred, leads data again!!!");
+      });
     actions.resetForm();
   };
   return (

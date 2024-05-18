@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useId } from "react";
 import clsx from "clsx";
 import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 import { addContact } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
 
@@ -12,7 +13,15 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   const handleSubmite = (values, actions) => {
-    dispatch(addContact(values));
+    dispatch(addContact(values))
+      .unwrap()
+      .then(() => {
+        toast.success("Congratulations, contact added successfully!!!");
+      })
+      .catch((error) => {
+        console.log("🚀 ~ handleSubmit ~ error:", error);
+        toast.error("An error occurred, try again!!!");
+      });
     actions.resetForm();
   };
 

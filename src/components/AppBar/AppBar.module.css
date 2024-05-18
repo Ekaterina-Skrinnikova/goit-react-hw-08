@@ -1,4 +1,5 @@
 .container {
+  /* position: fixed; */
   display: flex;
   height: 75px;
   justify-content: space-between;

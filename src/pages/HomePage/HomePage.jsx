@@ -6,7 +6,7 @@ export default function HomePage() {
       <PageTitle>App CONTACTS</PageTitle>
       <p>
         The Contacts application is a web application for managing user contact
-        information. It allows you to register, log in, add, edit and delete
+        information. It allows you to register, log in, add, find and delete
         contacts.
       </p>
     </div>

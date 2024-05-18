@@ -1,8 +1,11 @@
 .container {
-  display: flex;
-  justify-content: space-between;
+  /* margin-top: 75px; */
 }
 
+.location {
+  display: flex;
+  justify-content: center;
+}
 .searchbox {
-  margin-top: 153px;
+  margin-top: 15px;
 }
