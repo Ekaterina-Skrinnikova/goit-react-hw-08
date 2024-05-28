@@ -1,16 +1,44 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./operations";
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  updateContact,
+} from "./operations";
 import { logOut } from "../../redux/auth/operations";
+// import { act } from "react";
 
 const initialState = {
   items: [],
   loading: false,
   error: null,
+  isEditModalOpen: false,
+  isDeleteModalOpen: false,
+  contactToDelete: null,
+  contactToEdit: null,
 };
 
 const contactsSlice = createSlice({
   name: "contacts",
   initialState,
+  reducers: {
+    openDeleteModal: (state, action) => {
+      state.isDeleteModalOpen = true;
+      state.contactToDelete = action.payload;
+    },
+    closeDeleteModal: (state) => {
+      state.isDeleteModalOpen = false;
+      state.contactToDelete = null;
+    },
+    openEditModal: (state, action) => {
+      state.isEditModalOpen = true;
+      state.contactToEdit = action.payload;
+    },
+    closeEditModal: (state) => {
+      state.isEditModalOpen = false;
+      state.contactToEdit = null;
+    },
+  },
 
   extraReducers: (builder) =>
     builder
@@ -51,6 +79,24 @@ const contactsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(updateContact.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+        // state.items.map((item) =>
+        //   item.id === action.payload.id ? action.payload : item
+        // );
+        state.isEditModalOpen = false;
+        state.contactToEdit = null;
+      })
+      .addCase(updateContact.rejected, (state) => {
+        state.error = true;
+      })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
         state.loading = false;
@@ -68,5 +114,12 @@ export const selectFiltredContacts = createSelector(
     );
   }
 );
+
+export const {
+  openDeleteModal,
+  closeDeleteModal,
+  openEditModal,
+  closeEditModal,
+} = contactsSlice.actions;
 
 export default contactsSlice.reducer;
