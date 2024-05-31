@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import { addContact } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
+import Button from "../Button/Button";
 
 export default function ContactForm() {
   const textId = useId();
@@ -51,15 +52,15 @@ export default function ContactForm() {
           <ErrorMessage className={css.error} name="name" component="span" />
         </label>
 
-        <label className={clsx(css.label, css.margin)} htmlFor={telId}>
+        <label className={css.label} htmlFor={telId}>
           Number
           <Field className={css.input} name="number" type="tel" id={telId} />
           <ErrorMessage className={css.error} name="number" component="span" />
         </label>
 
-        <button className={css.btn} type="submit">
+        <Button className={css.btn} type="submit">
           Add contact
-        </button>
+        </Button>
       </Form>
     </Formik>
   );

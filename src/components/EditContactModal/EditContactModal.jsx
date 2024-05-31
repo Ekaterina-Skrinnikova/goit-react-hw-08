@@ -12,6 +12,7 @@ import {
 import { closeEditModal } from "../../redux/contacts/slice";
 import { updateContact } from "../../redux/contacts/operations";
 import css from "./EditContactModal.module.css";
+import Button from "../Button/Button";
 
 export default function EditContactModal() {
   const textId = useId();
@@ -51,11 +52,27 @@ export default function EditContactModal() {
     }),
   });
 
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      padding: "30px",
+    },
+    overlay: {
+      backgroundColor: "grey",
+    },
+  };
+
   return (
     <Modal
       isOpen={isEditModalOpen}
       onRequestClose={handleCloseModal}
       contentLabel="Edit contact"
+      style={customStyles}
     >
       {contactToEdit && (
         <Formik
@@ -64,7 +81,7 @@ export default function EditContactModal() {
           validationSchema={FeedbackSchema}
         >
           <Form className={css.container}>
-            <label className={css.label} htmlFor={textId}>
+            <label className={css.text} htmlFor={textId}>
               Name
               <Field
                 className={css.input}
@@ -79,7 +96,7 @@ export default function EditContactModal() {
               />
             </label>
 
-            <label className={clsx(css.label, css.margin)} htmlFor={telId}>
+            <label className={clsx(css.text, css.margin)} htmlFor={telId}>
               Number
               <Field
                 className={css.input}
@@ -93,17 +110,18 @@ export default function EditContactModal() {
                 component="span"
               />
             </label>
-
-            <button className={css.btn} type="submit">
-              Save
-            </button>
-            <button
-              className={css.btn}
-              type="button"
-              onClick={handleCloseModal}
-            >
-              Cancel
-            </button>
+            <div className={css.wrapper}>
+              <Button className={css.btn} type="submit">
+                Save
+              </Button>
+              <Button
+                className={css.btn}
+                type="button"
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </Button>
+            </div>
           </Form>
         </Formik>
       )}

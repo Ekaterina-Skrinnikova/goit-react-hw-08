@@ -1,8 +1,9 @@
 .container {
   /* position: fixed; */
   display: flex;
-  height: 75px;
+  height: 65px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #213547;
+  font-size: 0.9em;
 }

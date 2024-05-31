@@ -1,0 +1,11 @@
+.btn {
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #310d844b;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: orange;
+}

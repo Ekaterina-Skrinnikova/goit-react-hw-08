@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import { toast } from "react-hot-toast";
 import css from "../LoginForm/LoginForm.module.css";
+import Button from "../Button/Button";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -33,9 +34,9 @@ export default function LoginForm() {
           <Field className={css.input} type="password" name="password"></Field>
         </label>
 
-        <button className={css.btn} type="submit">
+        <Button className={css.btn} type="submit">
           Log In
-        </button>
+        </Button>
       </Form>
     </Formik>
   );

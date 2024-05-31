@@ -7,6 +7,8 @@ import {
 } from "../../redux/contacts/selectors";
 import { closeDeleteModal } from "../../redux/contacts/slice";
 import { deleteContact } from "../../redux/contacts/operations";
+import Button from "../Button/Button";
+import css from "../DeleteContactModal/DeleteContactModal.module.css";
 
 Modal.setAppElement("#root");
 
@@ -18,6 +20,20 @@ export default function DeleteContactModal() {
   // if (!isModalOpen) {
   //   return null;
   // }
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+    overlay: {
+      backgroundColor: "grey",
+    },
+  };
 
   const handleCloseModal = () => {
     dispatch(closeDeleteModal());
@@ -45,14 +61,21 @@ export default function DeleteContactModal() {
       isOpen={isDeleteModalOpen}
       onRequestClose={handleCloseModal}
       contentLabel="Confirm Deletion"
+      style={customStyles}
     >
       <div>
-        <h2>Confirm Deletion</h2>
-        <p>
+        <h2 className={css.title}>Confirm Deletion</h2>
+        <p className={css.text}>
           {`Are you sure you want to delete contact ${contactToDelete.name}?`}
         </p>
-        <button onClick={handleContactDelete}>Yes</button>
-        <button onClick={handleCloseModal}>Cancel</button>
+        <div className={css.wrapper}>
+          <Button className={css.btn} onClick={handleContactDelete}>
+            Yes
+          </Button>
+          <Button className={css.btn} onClick={handleCloseModal}>
+            Cancel
+          </Button>
+        </div>
       </div>
     </Modal>
   );

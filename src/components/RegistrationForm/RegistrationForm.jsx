@@ -2,6 +2,7 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { toast } from "react-hot-toast";
+import Button from "../Button/Button";
 import css from "../RegistrationForm/RegistrationForm.module.css";
 
 export default function RagistrationForm() {
@@ -42,9 +43,9 @@ export default function RagistrationForm() {
           <Field className={css.input} type="password" name="password"></Field>
         </label>
 
-        <button className={css.btn} type="submit">
+        <Button className={css.btn} type="submit">
           Register
-        </button>
+        </Button>
       </Form>
     </Formik>
   );
