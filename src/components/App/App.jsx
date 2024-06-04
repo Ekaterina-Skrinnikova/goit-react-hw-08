@@ -6,7 +6,8 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
-// import css from "./App.module.css";
+import Refresher from "../Refresher/Refresher";
+import { LineWave } from "react-loader-spinner";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -28,9 +29,9 @@ export default function App() {
   return (
     <Layout>
       {isRefreshing ? (
-        <b>Refreshing please wait...</b>
+        <Refresher />
       ) : (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={""}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route

@@ -11,20 +11,20 @@ import {
 } from "../../redux/contacts/selectors";
 import { closeEditModal } from "../../redux/contacts/slice";
 import { updateContact } from "../../redux/contacts/operations";
-import css from "./EditContactModal.module.css";
 import Button from "../Button/Button";
+import css from "./EditContactModal.module.css";
 
 export default function EditContactModal() {
+  Modal.setAppElement(document.body);
+
   const textId = useId();
   const telId = useId();
   const dispatch = useDispatch();
   const contactToEdit = useSelector(selectContactToEdit);
   const isEditModalOpen = useSelector(selectIsEditModalOpen);
 
-  const handleSubmite = (values) => {
-    console.log("🚀 ~ handleSubmite ~ values:", values);
+  const handleSubmit = (values) => {
     if (contactToEdit) {
-      console.log("🚀 ~ handleSubmite ~ contactToEdit:", contactToEdit);
       dispatch(updateContact(values))
         .unwrap()
         .then(() => {
@@ -61,9 +61,11 @@ export default function EditContactModal() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "30px",
+      backgroundColor: "rgba(216, 203, 73)",
     },
     overlay: {
-      backgroundColor: "grey",
+      backgroundColor: "rgba(0, 0, 0, 0.75)",
+      zIndex: "1000",
     },
   };
 
@@ -73,11 +75,12 @@ export default function EditContactModal() {
       onRequestClose={handleCloseModal}
       contentLabel="Edit contact"
       style={customStyles}
+      closeModal={handleCloseModal}
     >
       {contactToEdit && (
         <Formik
           initialValues={contactToEdit}
-          onSubmit={handleSubmite}
+          onSubmit={handleSubmit}
           validationSchema={FeedbackSchema}
         >
           <Form className={css.container}>
@@ -110,13 +113,12 @@ export default function EditContactModal() {
                 component="span"
               />
             </label>
+
             <div className={css.wrapper}>
-              <Button className={css.btn} type="submit">
-                Save
-              </Button>
+              <Button className={css.btn}>Save</Button>
               <Button
                 className={css.btn}
-                type="button"
+                // type="button"
                 onClick={handleCloseModal}
               >
                 Cancel

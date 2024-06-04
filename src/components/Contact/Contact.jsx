@@ -32,7 +32,11 @@ export default function Contact({ contact }) {
         <Button type="button" onClick={handleOpenEditModal}>
           <CiEdit />
         </Button>
-        <Button type="button" onClick={handleOpenDeleteModal}>
+        <Button
+          className={css.btn}
+          type="button"
+          onClick={handleOpenDeleteModal}
+        >
           <FiTrash2 />
         </Button>
       </div>

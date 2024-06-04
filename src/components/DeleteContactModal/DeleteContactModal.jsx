@@ -10,9 +10,9 @@ import { deleteContact } from "../../redux/contacts/operations";
 import Button from "../Button/Button";
 import css from "../DeleteContactModal/DeleteContactModal.module.css";
 
-Modal.setAppElement("#root");
-
 export default function DeleteContactModal() {
+  Modal.setAppElement(document.body);
+
   const dispatch = useDispatch();
   const isDeleteModalOpen = useSelector(selectIsDeleteModalOpen);
   const contactToDelete = useSelector(selectContactToDelete);
@@ -29,9 +29,12 @@ export default function DeleteContactModal() {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      padding: "30px",
+      backgroundColor: "rgba(216, 203, 73)",
     },
     overlay: {
-      backgroundColor: "grey",
+      backgroundColor: "rgba(0, 0, 0, 0.75)",
+      zIndex: "1000",
     },
   };
 
@@ -57,26 +60,38 @@ export default function DeleteContactModal() {
   };
 
   return (
-    <Modal
-      isOpen={isDeleteModalOpen}
-      onRequestClose={handleCloseModal}
-      contentLabel="Confirm Deletion"
-      style={customStyles}
-    >
-      <div>
-        <h2 className={css.title}>Confirm Deletion</h2>
-        <p className={css.text}>
-          {`Are you sure you want to delete contact ${contactToDelete.name}?`}
-        </p>
-        <div className={css.wrapper}>
-          <Button className={css.btn} onClick={handleContactDelete}>
-            Yes
-          </Button>
-          <Button className={css.btn} onClick={handleCloseModal}>
-            Cancel
-          </Button>
-        </div>
-      </div>
-    </Modal>
+    <div>
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={handleCloseModal}
+        contentLabel="Confirm Deletion"
+        style={customStyles}
+      >
+        {contactToDelete && (
+          <div>
+            <h2 className={css.title}>Confirm Deletion</h2>
+            <p className={css.text}>
+              {`Are you sure you want to delete contact ${contactToDelete.name}?`}
+            </p>
+            <div className={css.wrapper}>
+              <Button
+                className={css.btn}
+                type="button"
+                onClick={handleContactDelete}
+              >
+                Yes
+              </Button>
+              <Button
+                className={css.btn}
+                type="button"
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
+    </div>
   );
 }

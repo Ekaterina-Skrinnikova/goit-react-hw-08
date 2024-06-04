@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   row-gap: 10px;
   width: 450px;
+  z-index: 1001;
 }
 .label {
   display: flex;

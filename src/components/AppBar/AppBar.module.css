@@ -1,9 +1,14 @@
 .container {
-  /* position: fixed; */
-  display: flex;
+  position: fixed;
+  top: 0;
+  width: 470px;
   height: 65px;
+  padding: 0 5px;
+  z-index: 500;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #213547;
   font-size: 0.9em;
+  background-color: rgb(216, 203, 73);
 }

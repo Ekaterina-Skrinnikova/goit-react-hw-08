@@ -7,8 +7,10 @@
 .link {
   font-size: 1.4em;
   font-weight: 600;
+  text-shadow: 1px 1px 2px grey;
 }
 
 .link.active {
-  color: #e84a5f;
+  color: rgb(62, 182, 64);
+  text-shadow: 1px 1px 2px grey;
 }

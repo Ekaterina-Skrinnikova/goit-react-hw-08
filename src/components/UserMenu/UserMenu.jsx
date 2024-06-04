@@ -16,7 +16,7 @@ export default function UserMenu() {
     <div className={css.container}>
       <p className={css.text}>Welcome, {user.name} </p>
 
-      <Button onClick={handleLogout} className={css.btn} type="button">
+      <Button className={css.btn} type="button" onClick={handleLogout}>
         Logout
       </Button>
     </div>

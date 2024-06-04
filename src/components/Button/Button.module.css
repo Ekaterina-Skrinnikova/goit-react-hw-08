@@ -2,10 +2,11 @@
   height: 30px;
   border: 1px solid transparent;
   border-radius: 8px;
-  background-color: #310d844b;
+  background-color: hsl(180, 37%, 59%);
   cursor: pointer;
+  box-shadow: 4px 3px 3px grey;
 }
 
 .btn:hover {
-  background-color: orange;
+  background-color: rgb(62, 182, 64);
 }

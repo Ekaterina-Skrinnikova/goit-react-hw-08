@@ -6,7 +6,6 @@ import {
   updateContact,
 } from "./operations";
 import { logOut } from "../../redux/auth/operations";
-// import { act } from "react";
 
 const initialState = {
   items: [],
@@ -103,6 +102,17 @@ const contactsSlice = createSlice({
         state.error = null;
       }),
 });
+
+export const selectSortedContacts = createSelector(
+  [(state) => state.contacts.items],
+  (contacts) => {
+    return contacts.sort((a, b) => {
+      let contactA = a.name.toLowerCase();
+      let contactB = b.name.toLowerCase();
+      return contactA.localeCompare(contactB);
+    });
+  }
+);
 
 export const selectFiltredContacts = createSelector(
   [(state) => state.contacts.items, (state) => state.filters.name],
