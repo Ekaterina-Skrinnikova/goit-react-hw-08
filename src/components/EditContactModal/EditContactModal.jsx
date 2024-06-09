@@ -115,10 +115,12 @@ export default function EditContactModal() {
             </label>
 
             <div className={css.wrapper}>
-              <Button className={css.btn}>Save</Button>
+              <Button className={css.btn} type="submit">
+                Save
+              </Button>
               <Button
                 className={css.btn}
-                // type="button"
+                type="button"
                 onClick={handleCloseModal}
               >
                 Cancel

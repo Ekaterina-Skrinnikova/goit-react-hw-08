@@ -1,9 +1,5 @@
 import { useSelector } from "react-redux";
 import { selectFiltredContacts } from "../../redux/contacts/slice";
-import {
-  selectIsDeleteModalOpen,
-  selectIsEditModalOpen,
-} from "../../redux/contacts/selectors";
 import DeleteContactModal from "../DeleteContactModal/DeleteContactModal";
 import EditContactModal from "../EditContactModal/EditContactModal";
 import Contact from "../Contact/Contact";
@@ -11,8 +7,6 @@ import css from "./ContactList.module.css";
 
 export default function ContactList() {
   const contacts = useSelector(selectFiltredContacts);
-  const isDeleteModalOpen = useSelector(selectIsDeleteModalOpen);
-  const isEditeModalOpen = useSelector(selectIsEditModalOpen);
 
   return (
     <div>
@@ -23,8 +17,9 @@ export default function ContactList() {
           </li>
         ))}
       </ul>
-      {isDeleteModalOpen && <DeleteContactModal />}
-      {isEditeModalOpen && <EditContactModal />}
+
+      <DeleteContactModal />
+      <EditContactModal />
     </div>
   );
 }

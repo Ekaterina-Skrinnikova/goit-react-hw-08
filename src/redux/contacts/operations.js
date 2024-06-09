@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { selectContactToEdit } from "./selectors";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",

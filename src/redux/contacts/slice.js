@@ -9,12 +9,13 @@ import { logOut } from "../../redux/auth/operations";
 
 const initialState = {
   items: [],
-  loading: false,
-  error: null,
   isEditModalOpen: false,
+  contactToEdit: null,
   isDeleteModalOpen: false,
   contactToDelete: null,
-  contactToEdit: null,
+
+  loading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
@@ -93,8 +94,8 @@ const contactsSlice = createSlice({
         state.isEditModalOpen = false;
         state.contactToEdit = null;
       })
-      .addCase(updateContact.rejected, (state) => {
-        state.error = true;
+      .addCase(updateContact.rejected, (state, action) => {
+        state.error = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
